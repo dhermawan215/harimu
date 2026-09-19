@@ -1,0 +1,28 @@
+@extends('mail.layout')
+@section('mail_content')
+<h1 class="h1" style="margin:0 0 12px; font-size:26px; line-height:34px; font-weight:700; color:#2b2530;">Verifikasi email Anda</h1>
+
+<p class="text" style="margin:0 0 16px; font-size:15px; line-height:24px; color:#4a424d;">Halo {{ $name }},</p>
+<p class="text" style="margin:0 0 24px; font-size:15px; line-height:24px; color:#4a424d;">
+    Terima kasih telah mendaftar. Klik tombol di bawah untuk memverifikasi alamat email dan mengaktifkan akun Anda.
+</p>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
+    <tr>
+        <td class="btn-cell" bgcolor="#b76e79" style="border-radius:8px; background-color:#b76e79;">
+            <a href="{{ $action_url }}" class="btn" style="display:inline-block; padding:14px 32px; font-size:15px; line-height:20px; font-weight:700; color:#ffffff; text-decoration:none; border-radius:8px;">Verifikasi Email</a>
+        </td>
+    </tr>
+</table>
+
+<p class="muted" style="margin:0 0 16px; font-size:13px; line-height:20px; color:#7a7078;">
+    Tautan ini berlaku selama {{ $expire_minutes }} menit. Jika Anda tidak merasa membuat akun, abaikan email ini.
+</p>
+
+<div class="divider" style="border-top:1px solid #efe4de; font-size:0; line-height:0; height:1px; margin:24px 0;">&nbsp;</div>
+
+<p class="muted" style="margin:0; font-size:13px; line-height:20px; color:#7a7078;">
+    Tombol tidak berfungsi? Salin dan tempel tautan berikut ke browser Anda:<br>
+    <a href="{{$action_url}}" class="link" style="color:#b76e79; text-decoration:underline; word-break:break-all;">{{$action_url}}</a>
+</p>
+@endsection
