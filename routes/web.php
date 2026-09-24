@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Auth\AuthenticateController;
+use App\Http\Controllers\User\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,12 +30,23 @@ Route::post('/email/resend', [AuthenticateController::class, 'resendVerification
     ->name('verification.resend');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return 'dashboard';
-    })->name('dashboard');
-    Route::post('/logout', [AuthenticateController::class, 'destroy'])->name('logout');
-});
+    Route::post('/logout', [AuthenticateController::class, 'signOut'])->name('logout');
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::prefix('admin')->middleware('admin')->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        //route music management
+        Route::controller(MusicController::class)->prefix('music')->group(function () {
+            Route::get('/', 'index')->name('admin.music');
+            Route::post('/list', 'listData');
+            Route::post('/save', 'store');
+            Route::post('/edit', 'edit');
+            Route::post('/update', 'update');
+            Route::delete('/delete', 'destroy');
+            Route::post('/restore', 'restore');
+            Route::post('/toggle-active', 'toggleActive');
+            Route::get('/stream/{xvalue}', 'stream')->name('admin.music.stream');
+        });
+    });
 });

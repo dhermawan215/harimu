@@ -14,6 +14,7 @@ class Music extends Model
         'duration',
         'tier',
         'is_active',
-        'sort_order',
+        'token',
+        'is_delete',
     ];
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('duration')->nullable();
             $table->enum('tier', ['free', 'basic', 'premium'])->default('free');
             $table->boolean('is_active')->default(true);
-            $table->unsignedInteger('sort_order')->default(0);
+            $table->tinyInteger('is_delete')->default(0);
             $table->timestamps();
         });
     }
