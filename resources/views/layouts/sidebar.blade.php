@@ -49,9 +49,10 @@
                 <span class="nav-icon"><i class="bi bi-easel" aria-hidden="true"></i></span>
                 <span class="nav-text">Template</span>
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ request()->route('/admin/package*') ? 'active' : '' }}"
+                href="{{ route('admin.package') }}">
                 <span class="nav-icon"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
-                <span class="nav-text">Paket</span>
+                <span class="nav-text">Package</span>
             </a>
             <a class="nav-link" href="#">
                 <span class="nav-icon"><i class="bi bi-receipt" aria-hidden="true"></i></span>
@@ -64,7 +65,7 @@
             <a class="nav-link {{ request()->route('/admin/music*') ? 'active' : '' }}"
                 href="{{ route('admin.music') }}">
                 <span class="nav-icon"><i class="bi bi-music-note-list"></i></span>
-                <span class="nav-text">Musik</span>
+                <span class="nav-text">Music</span>
             </a>
             <a class="nav-link" href="#">
                 <span class="nav-icon"><i class="bi bi-gear" aria-hidden="true"></i></span>
