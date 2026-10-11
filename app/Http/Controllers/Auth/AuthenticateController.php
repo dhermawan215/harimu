@@ -69,7 +69,29 @@ class AuthenticateController extends Controller
                 ->with('error', 'Email Anda belum diverifikasi. Cek email Anda atau kirim ulang tautan verifikasi di bawah.');
         }
 
+        if (! $request->user()->is_active) {
+            Auth::logout();
+
+            $this->captureSystemLog(
+                null,
+                $request->email,
+                'LOGIN',
+                'Blocked login, account is inactive',
+                $request
+            );
+
+            throw ValidationException::withMessages([
+                'email' => 'Akun Anda telah dinonaktifkan. Hubungi support jika ini keliru.',
+            ]);
+        }
+
         $request->session()->regenerate();
+
+        $request->user()->forceFill([
+            'is_login' => true,
+            'last_login_at' => now(),
+            'last_login_ip' => $request->ip(),
+        ])->save();
 
         $this->captureSystemLog(
             null,
@@ -99,6 +121,8 @@ class AuthenticateController extends Controller
             'Success login to system',
             $request
         );
+
+        $user->forceFill(['is_login' => false])->save();
 
         Auth::logout();
 

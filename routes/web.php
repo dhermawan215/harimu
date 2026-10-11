@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\QuoteController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\User\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,12 @@ Route::middleware('auth')->group(function () {
             Route::post('/save', 'store');
             Route::post('/edit', 'edit');
             Route::post('/update', 'update');
+            Route::post('/change-status', 'changeStatus');
+        });
+        //route user management
+        Route::controller(AdminUserController::class)->prefix('user')->group(function () {
+            Route::get('/', 'index')->name('admin.user');
+            Route::post('/list', 'listData');
             Route::post('/change-status', 'changeStatus');
         });
     });

@@ -42,6 +42,30 @@ class UserRepository
         return User::where('email', $email)->first();
     }
     /**
+     * method find user by id
+     * @param int $id
+     */
+    public function findById(int $id): ?User
+    {
+        return User::find($id);
+    }
+    /**
+     * method make user active
+     * @param int $id
+     */
+    public function setActive(int $id): void
+    {
+        User::find($id)->update(['is_active' => true]);
+    }
+    /**
+     * method make user inactive
+     * @param int $id
+     */
+    public function setInActive(int $id): void
+    {
+        User::find($id)->update(['is_active' => false]);
+    }
+    /**
      * method mark user email as verified
      * @param User $user
      */
