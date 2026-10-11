@@ -15,6 +15,5 @@ class Quote extends Model
         'created_by',
         'visibility',
         'is_active',
-        'is_delete',
     ];
 }

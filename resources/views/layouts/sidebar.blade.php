@@ -58,7 +58,8 @@
                 <span class="nav-icon"><i class="bi bi-receipt" aria-hidden="true"></i></span>
                 <span class="nav-text">Transaksi</span>
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ request()->route('/admin/quote*') ? 'active' : '' }}""
+                href="{{ route('admin.quote') }}">
                 <span class="nav-icon"><i class="bi bi-quote" aria-hidden="true"></i></span>
                 <span class="nav-text">Kata &amp; Ayat</span>
             </a>

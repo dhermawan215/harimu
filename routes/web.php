@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\QuoteController;
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\User\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,15 @@ Route::middleware('auth')->group(function () {
         //route package management
         Route::controller(PackageController::class)->prefix('package')->group(function () {
             Route::get('/', 'index')->name('admin.package');
+            Route::post('/list', 'listData');
+            Route::post('/save', 'store');
+            Route::post('/edit', 'edit');
+            Route::post('/update', 'update');
+            Route::post('/change-status', 'changeStatus');
+        });
+        //route quote management
+        Route::controller(QuoteController::class)->prefix('quote')->group(function () {
+            Route::get('/', 'index')->name('admin.quote');
             Route::post('/list', 'listData');
             Route::post('/save', 'store');
             Route::post('/edit', 'edit');
