@@ -7,7 +7,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "hanssuite/hanscrypt": "dev-main",
+        "hanssuite/hanscrypt": "^1.0",
         "james-heinrich/getid3": "^1.9",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1"

@@ -49,6 +49,11 @@
                 <span class="nav-icon"><i class="bi bi-easel" aria-hidden="true"></i></span>
                 <span class="nav-text">Template</span>
             </a>
+            <a class="nav-link {{ request()->route('/admin/template-category*') ? 'active' : '' }}"
+                href="{{ route('admin.template_category') }}">
+                <span class="nav-icon"><i class="bi bi-easel" aria-hidden="true"></i></span>
+                <span class="nav-text">Template Category</span>
+            </a>
             <a class="nav-link {{ request()->route('/admin/package*') ? 'active' : '' }}"
                 href="{{ route('admin.package') }}">
                 <span class="nav-icon"><i class="bi bi-box-seam" aria-hidden="true"></i></span>

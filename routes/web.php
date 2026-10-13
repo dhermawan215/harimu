@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\QuoteController;
+use App\Http\Controllers\Admin\TemplateCategoryController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\User\DashboardController;
@@ -74,6 +75,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('admin.user');
             Route::post('/list', 'listData');
             Route::post('/change-status', 'changeStatus');
+        });
+        //route template category
+        Route::controller(TemplateCategoryController::class)->prefix('template-category')->group(function () {
+            Route::get('/', 'index')->name('admin.template_category');
+            Route::post('/list', 'listData');
+            Route::post('/save', 'store');
+            Route::post('/edit', 'edit');
+            Route::post('/update', 'update');
         });
     });
 });
